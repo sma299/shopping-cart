@@ -1,6 +1,21 @@
 # shopping_cart.py
 
 #from pprint import pprint
+import datetime
+
+#read from CSV file
+import csv
+
+#what my csv file is saved as
+csv_file_path = "products.csv"
+
+#this probably opens the csv file
+with open(csv_file_path, "r") as csv_file: 
+    reader = csv.DictReader(csv_file)
+    for row in reader:
+        print(row["id"], row["name"])
+       
+
 
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
@@ -55,24 +70,45 @@ while True:
 # INFO DISPLAY (OUTPUT)
 #
 
-for selected_id in selected_ids:
-    matching_products = [p for p in products if str(p["id"])  == str(selected_id)]
-    matching_product = matching_products[0]
-    total_price = total_price + matching_product["price"]
-    #print("SELECTED PRODUCT: " + matching_product["name"] + " " + str(matching_product["price"]))
+#for selected_id in selected_ids:
+#    matching_products = [p for p in products if str(p["id"])  == str(selected_id)]
+#    matching_product = matching_products[0]
+#    total_price = total_price + matching_product["price"]
+#    print("SELECTED PRODUCT: " + matching_product["name"] + " " + str(matching_product["price"]))
 
 
 
 
 #starting the receipt
-
+print("--------------------------------")
 print("~~~~~~~SAMAR'S STUFF~~~~~~~~~")
 print("phone number: 856-333-7979")
 print("www.samarstuff.com")
+print("--------------------------------")
+
+#date time goes here
+today = datetime.datetime.today()
+print("CHECKOUT AT: " + str(today))
+print("--------------------------------")
+
+
+#selected items
+print("SELECTED PRODUCTS:")
+for selected_id in selected_ids:
+    matching_products = [p for p in products if str(p["id"])  == str(selected_id)]
+    matching_product = matching_products[0]
+    total_price = total_price + matching_product["price"]
+    selected_product_price = "${0:.2f}".format(matching_product["price"])
+    print("... " + matching_product["name"] + " " + "(" + selected_product_price + ")")
+
+
+print("--------------------------------")
+
 
 #do my calculations
 sales_tax = total_price * tax_percentage
 real_total = total_price + sales_tax
+
 
 #now I am printing the total
 total_price = "${0:.2f}".format(total_price)
@@ -81,9 +117,9 @@ sales_tax = "${0:.2f}".format(sales_tax)
 print("SALES TAX: " + sales_tax)
 real_total = "${0:.2f}".format(real_total)
 print("TOTAL OWED: " + real_total)
+print("--------------------------------")
 
 
 #now for a friendly message
-
 print("THANK YOU FOR SHOPPING AT SAMAR'S STUFF!")
 print("HAVE A GREAT DAY")
