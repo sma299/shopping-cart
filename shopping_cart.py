@@ -12,8 +12,16 @@ csv_file_path = "products.csv"
 #this probably opens the csv file
 with open(csv_file_path, "r") as csv_file: 
     reader = csv.DictReader(csv_file)
-    for row in reader:
-        print(row["id"], row["name"])
+    #for row in reader:
+    #print(row["id"], row["name"])
+    #for rows in reader:
+    #    id = rows[0]
+    #    name = rows[1]
+    #    price = rows[2]
+    #products = {id:price for id, name, price in rows}
+   # print(products)
+
+        
        
 
 
@@ -40,7 +48,6 @@ products = [
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
-#print(products)
 
 # TODO: write some Python code here to produce the desired output
 
@@ -88,7 +95,9 @@ print("--------------------------------")
 
 #date time goes here
 today = datetime.datetime.today()
-print("CHECKOUT AT: " + str(today))
+print("CHECKOUT AT: ")
+print(today.strftime("%Y-%m-%d %I:%M %p"))
+
 print("--------------------------------")
 
 
