@@ -21,9 +21,6 @@ with open(csv_file_path, "r") as csv_file:
     #products = {id:price for id, name, price in rows}
    # print(products)
 
-        
-       
-
 
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
@@ -61,19 +58,24 @@ tax_percentage = .0875
 real_total = 0
 selected_ids = [] #create a list of ids selected
 
-while True:
+valid_ids = [] #list of valid ids from the list
+for p in products:
+    valid_ids.append(p["id"]) 
 
-    selected_id = input("Please input a product identifier, or 'DONE' if there are no more items: ") # this is a string
+
+
+while True:
+    #get the input
+    selected_id = input("Please input a product identifier, or 'DONE' if there are no more items: ") #this is a string
 
     if selected_id == "DONE":
         break
-    else:
-        #matching_products = [p for p in products if str(p["id"])  == str(selected_id)]
-        #matching_product = matching_products[0]
-        #total_price = total_price + matching_product["price"]
-        #print("SELECTED PRODUCT: " + matching_product["name"] + " " + str(matching_product["price"]))
+    elif int(selected_id) in valid_ids:
         selected_ids.append(selected_id)
-#
+    else:
+        print("Hey, are you sure that product identifier is correct? Please try again!") #error message
+
+
 # INFO DISPLAY (OUTPUT)
 #
 
@@ -82,8 +84,6 @@ while True:
 #    matching_product = matching_products[0]
 #    total_price = total_price + matching_product["price"]
 #    print("SELECTED PRODUCT: " + matching_product["name"] + " " + str(matching_product["price"]))
-
-
 
 
 #starting the receipt
