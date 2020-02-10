@@ -10,12 +10,12 @@ cd ~Documents/GitHub/shopping-cart
 
 # setup
 packages to install:
-
+nada
 virtual environment:
+shopping-env
 
 
-
-#usage
+# usage
 ``` sh
 python path/to/your/file.py
 ```
