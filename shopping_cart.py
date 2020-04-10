@@ -19,16 +19,16 @@ with open(csv_file_path, "r") as csv_file:
     #products = {id:price for id, name, price in rows}
     #print(products)
 
-#HERE I WILL PUT MY NEW FUNCTIONS because I cannot repeat myself! DNR
+#HERE I WILL PUT MY NEW FUNCTIONS because I cannot repeat myself!
 
-#to usd function
-def to_usd(amount)
+#converts a numeric value to usd-formatted string, for printing and display purposes
+def to_usd(amount):
     return "${0:.2f}".format(amount)
 
 #datetime function
-def human_friendly_timestamp()
+def human_friendly_timestamp():
     checkout_at = datetime.now().strftime("%Y-%m-%d %I:%M %p")
-return checkout_at
+    return checkout_at
 
 
 
@@ -116,7 +116,8 @@ for selected_id in selected_ids:
     matching_products = [p for p in products if str(p["id"])  == str(selected_id)]
     matching_product = matching_products[0]
     total_price = total_price + matching_product["price"]
-    selected_product_price = "${0:.2f}".format(matching_product["price"])
+    selected_product_price = to_usd(matching_product["price"])
+
     print("... " + matching_product["name"] + " " + "(" + selected_product_price + ")")
 
 
@@ -129,12 +130,12 @@ real_total = total_price + sales_tax
 
 
 #now I am printing the total
-total_price = "${0:.2f}".format(total_price)
-print("TOTAL PRICE: " + total_price) 
-sales_tax = "${0:.2f}".format(sales_tax)
-print("SALES TAX: " + sales_tax)
-real_total = "${0:.2f}".format(real_total)
-print("TOTAL OWED: " + real_total)
+#total_price = "${0:.2f}".format(total_price)
+print("TOTAL PRICE: " + to_usd(total_price)) 
+#sales_tax = "${0:.2f}".format(sales_tax)
+print("SALES TAX: " + to_usd(sales_tax))
+#real_total = "${0:.2f}".format(real_total)
+print("TOTAL OWED: " + to_usd(real_total))
 print("--------------------------------")
 
 
@@ -142,6 +143,6 @@ print("--------------------------------")
 print("THANK YOU FOR SHOPPING AT SAMAR'S STUFF!")
 print("HAVE A GREAT DAY")
 
-file_name = os.path.join(os.path.dirname(__file__), "..", "receipts", f"{now.strftime("%Y-%m-%d %I:%M %p")}.txt"
-with open(file_name, 'w') as f:
-    
+#file_name = os.path.join(os.path.dirname(__file__), "..", "receipts", f"{now.strftime("%Y-%m-%d %I:%M %p")}.txt"
+#with open(file_name, 'w') as f:
+#    f.write("_______________________")
