@@ -2,6 +2,7 @@
 
 #from pprint import pprint
 import datetime #get the date and time
+import os #need this to write to a file
 import csv #read from CSV file
 
 #what my csv file is saved as
@@ -130,11 +131,8 @@ real_total = total_price + sales_tax
 
 
 #now I am printing the total
-#total_price = "${0:.2f}".format(total_price)
 print("TOTAL PRICE: " + to_usd(total_price)) 
-#sales_tax = "${0:.2f}".format(sales_tax)
 print("SALES TAX: " + to_usd(sales_tax))
-#real_total = "${0:.2f}".format(real_total)
 print("TOTAL OWED: " + to_usd(real_total))
 print("--------------------------------")
 
