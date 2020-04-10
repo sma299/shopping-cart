@@ -12,12 +12,16 @@ cd ~/Documents/GitHub/shopping-cart
 ```
 
 ## Setup
-No packages to install
 Create an anaconda virtual environment
 
 Example
+```sh
 conda activate shopping-env
-
+```
+Install pytest using pip
+```sh
+pip install pytest
+```
 
 ## Usage
 Run the python script
