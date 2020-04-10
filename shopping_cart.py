@@ -1,11 +1,11 @@
 # shopping_cart.py
 
-#from pprint import pprint
-import datetime #get the date and time
-import os #need this to write to a file
+# from pprint import pprint
+import datetime # get the date and time
+import os # need this to write to a file
 
 
-#HERE I WILL PUT MY NEW FUNCTIONS because I cannot repeat myself!
+# HERE I WILL PUT MY NEW FUNCTIONS because I cannot repeat myself!
 
 """
 my first docstring comment
@@ -25,10 +25,17 @@ def human_friendly_timestamp():
     checkout_at = today.strftime("%Y-%m-%d %I:%M %p")
     return checkout_at
 
+"""
+product lookup function that finds and returns the proper product, even if the products are not sorted in order of their unique identifiers. 
+""" 
+
+def find_product(selected_id, products):
+    matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
+    matching_product = matching_products[0]
+    return matching_product
 
 
-
-#keep this here because I do not actually read from the csv file
+# keep this here because I do not actually read from the csv file
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
     {"id":2, "name": "All-Seasons Salt", "department": "pantry", "aisle": "spices seasonings", "price": 4.99},
@@ -60,45 +67,45 @@ total_price = 0
 sales_tax = 0
 tax_percentage = .0875
 real_total = 0
-selected_ids = [] #create a list of ids selected
+selected_ids = [] # create a list of ids selected
 
-valid_ids = [] #list of valid ids from the list
+valid_ids = [] # list of valid ids from the list
 for p in products:
     valid_ids.append(p["id"]) 
 
 
 
 while True:
-    #get the input
-    selected_id = input("Please input a product identifier, or 'DONE' if there are no more items: ") #this is a string
+    # get the input
+    selected_id = input("Please input a product identifier, or 'DONE' if there are no more items: ") # this is a string
 
     if selected_id == "DONE":
         break
     elif int(selected_id) in valid_ids:
         selected_ids.append(selected_id)
     else:
-        print("Hey, are you sure that product identifier is correct? Please try again!") #error message
+        print("Hey, are you sure that product identifier is correct? Please try again!") # error message
 
 
 # INFO DISPLAY (OUTPUT)
 
 receipt = ""
 
-#starting the receipt
+# starting the receipt
 receipt += "\n--------------------------------"
 receipt += "\n~~~~~~~SAMAR'S STUFF~~~~~~~~~"
 receipt += "\nphone number: 856-333-7979"
 receipt += "\nwww.samarstuff.com"
 receipt += "\n--------------------------------"
 
-#date time goes here
+# date time goes here
 receipt += "\nCHECKOUT AT: "
 receipt += "\n" + human_friendly_timestamp()
 
 receipt += "\n--------------------------------"
 
 
-#selected items
+# selected items
 print("SELECTED PRODUCTS:")
 for selected_id in selected_ids:
     matching_products = [p for p in products if str(p["id"])  == str(selected_id)]
@@ -112,25 +119,25 @@ for selected_id in selected_ids:
 receipt += "\n--------------------------------"
 
 
-#do my calculations
+# do my calculations
 sales_tax = total_price * tax_percentage
 real_total = total_price + sales_tax
 
 
-#now I am printing the total
+# now I am printing the total
 receipt += "\nTOTAL PRICE: " + to_usd(total_price)
 receipt += "\nSALES TAX: " + to_usd(sales_tax)
 receipt += "\nTOTAL OWED: " + to_usd(real_total)
 receipt += "\n--------------------------------"
 
 
-#now for a friendly message
+# now for a friendly message
 receipt += "\nTHANK YOU FOR SHOPPING AT SAMAR'S STUFF!"
 receipt += "\nHAVE A GREAT DAY"
 
 print(receipt)
 
 file_name = os.path.join(os.path.dirname(__file__),"..", "receipts", f"{now.strftime("%Y-%M-%d-%H-%m-%S")}.txt")
-#file_name = os.path.join(os.path.dirname(__file__),"..", "receipts", human_friendly_timestamp())
+# file_name = os.path.join(os.path.dirname(__file__),"..", "receipts", human_friendly_timestamp())
 with open(file_name, 'w') as f:
     f.write(receipt)
