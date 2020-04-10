@@ -3,30 +3,23 @@
 #from pprint import pprint
 import datetime #get the date and time
 import os #need this to write to a file
-import csv #read from CSV file
 
-#what my csv file is saved as
-csv_file_path = "products.csv"
-
-#this probably opens the csv file
-with open(csv_file_path, "r") as csv_file: 
-    reader = csv.DictReader(csv_file)
-    #for row in reader:
-    #print(row["id"], row["name"])
-    #for rows in reader:
-    #    id = rows[0]
-    #    name = rows[1]
-    #    price = rows[2]
-    #products = {id:price for id, name, price in rows}
-    #print(products)
 
 #HERE I WILL PUT MY NEW FUNCTIONS because I cannot repeat myself!
 
-#converts a numeric value to usd-formatted string, for printing and display purposes
+"""
+my first docstring comment
+converts a numeric value to usd-formatted string, for printing and display purposes
+"""
+
 def to_usd(amount):
     return "${0:.2f}".format(amount)
 
-#datetime function
+"""
+datetime function that returns the date in this format
+ex: 2020-04-10 02:36 PM
+""" 
+
 def human_friendly_timestamp():
     today = datetime.datetime.today()
     checkout_at = today.strftime("%Y-%m-%d %I:%M %p")
@@ -137,7 +130,7 @@ receipt += "\nHAVE A GREAT DAY"
 
 print(receipt)
 
-#file_name = os.path.join(os.path.dirname(__file__),"..", "receipts", f"{now.strftime("%Y-%M-%d-%H-%m-%S")}.txt")
-file_name = os.path.join(os.path.dirname(__file__),"..", "receipts")
+file_name = os.path.join(os.path.dirname(__file__),"..", "receipts", f"{now.strftime("%Y-%M-%d-%H-%m-%S")}.txt")
+#file_name = os.path.join(os.path.dirname(__file__),"..", "receipts", human_friendly_timestamp())
 with open(file_name, 'w') as f:
-    f.write("_______________________")
+    f.write(receipt)
