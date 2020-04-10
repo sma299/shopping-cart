@@ -28,7 +28,8 @@ def to_usd(amount):
 
 #datetime function
 def human_friendly_timestamp():
-    checkout_at = datetime.now().strftime("%Y-%m-%d %I:%M %p")
+    today = datetime.datetime.today()
+    checkout_at = today.strftime("%Y-%m-%d %I:%M %p")
     return checkout_at
 
 
@@ -87,28 +88,21 @@ while True:
 
 
 # INFO DISPLAY (OUTPUT)
-#
 
-#for selected_id in selected_ids:
-#    matching_products = [p for p in products if str(p["id"])  == str(selected_id)]
-#    matching_product = matching_products[0]
-#    total_price = total_price + matching_product["price"]
-#    print("SELECTED PRODUCT: " + matching_product["name"] + " " + str(matching_product["price"]))
-
+receipt = ""
 
 #starting the receipt
-print("--------------------------------")
-print("~~~~~~~SAMAR'S STUFF~~~~~~~~~")
-print("phone number: 856-333-7979")
-print("www.samarstuff.com")
-print("--------------------------------")
+receipt += "\n--------------------------------"
+receipt += "\n~~~~~~~SAMAR'S STUFF~~~~~~~~~"
+receipt += "\nphone number: 856-333-7979"
+receipt += "\nwww.samarstuff.com"
+receipt += "\n--------------------------------"
 
 #date time goes here
-today = datetime.datetime.today()
-print("CHECKOUT AT: ")
-print(today.strftime("%Y-%m-%d %I:%M %p"))
+receipt += "\nCHECKOUT AT: "
+receipt += "\n" + human_friendly_timestamp()
 
-print("--------------------------------")
+receipt += "\n--------------------------------"
 
 
 #selected items
@@ -119,10 +113,10 @@ for selected_id in selected_ids:
     total_price = total_price + matching_product["price"]
     selected_product_price = to_usd(matching_product["price"])
 
-    print("... " + matching_product["name"] + " " + "(" + selected_product_price + ")")
+    receipt += "\n" + "... " + matching_product["name"] + " " + "(" + selected_product_price + ")"
 
 
-print("--------------------------------")
+receipt += "\n--------------------------------"
 
 
 #do my calculations
@@ -131,15 +125,17 @@ real_total = total_price + sales_tax
 
 
 #now I am printing the total
-print("TOTAL PRICE: " + to_usd(total_price)) 
-print("SALES TAX: " + to_usd(sales_tax))
-print("TOTAL OWED: " + to_usd(real_total))
-print("--------------------------------")
+receipt += "\nTOTAL PRICE: " + to_usd(total_price)
+receipt += "\nSALES TAX: " + to_usd(sales_tax)
+receipt += "\nTOTAL OWED: " + to_usd(real_total)
+receipt += "\n--------------------------------"
 
 
 #now for a friendly message
-print("THANK YOU FOR SHOPPING AT SAMAR'S STUFF!")
-print("HAVE A GREAT DAY")
+receipt += "\nTHANK YOU FOR SHOPPING AT SAMAR'S STUFF!"
+receipt += "\nHAVE A GREAT DAY"
+
+print(receipt)
 
 #file_name = os.path.join(os.path.dirname(__file__),"..", "receipts", f"{now.strftime("%Y-%M-%d-%H-%m-%S")}.txt")
 file_name = os.path.join(os.path.dirname(__file__),"..", "receipts")
