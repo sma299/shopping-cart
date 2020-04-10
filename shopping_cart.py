@@ -1,10 +1,8 @@
 # shopping_cart.py
 
 #from pprint import pprint
-import datetime
-
-#read from CSV file
-import csv
+import datetime #get the date and time
+import csv #read from CSV file
 
 #what my csv file is saved as
 csv_file_path = "products.csv"
@@ -19,9 +17,23 @@ with open(csv_file_path, "r") as csv_file:
     #    name = rows[1]
     #    price = rows[2]
     #products = {id:price for id, name, price in rows}
-   # print(products)
+    #print(products)
+
+#HERE I WILL PUT MY NEW FUNCTIONS because I cannot repeat myself! DNR
+
+#to usd function
+def to_usd(amount)
+    return "${0:.2f}".format(amount)
+
+#datetime function
+def human_friendly_timestamp()
+    checkout_at = datetime.now().strftime("%Y-%m-%d %I:%M %p")
+return checkout_at
 
 
+
+
+#keep this here because I do not actually read from the csv file
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
     {"id":2, "name": "All-Seasons Salt", "department": "pantry", "aisle": "spices seasonings", "price": 4.99},
@@ -44,9 +56,6 @@ products = [
     {"id":19, "name": "Gluten Free Quinoa Three Cheese & Mushroom Blend", "department": "dry goods pasta", "aisle": "grains rice dried goods", "price": 3.99},
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
-
-
-# TODO: write some Python code here to produce the desired output
 
 
 #
@@ -132,3 +141,7 @@ print("--------------------------------")
 #now for a friendly message
 print("THANK YOU FOR SHOPPING AT SAMAR'S STUFF!")
 print("HAVE A GREAT DAY")
+
+file_name = os.path.join(os.path.dirname(__file__), "..", "receipts", f"{now.strftime("%Y-%m-%d %I:%M %p")}.txt"
+with open(file_name, 'w') as f:
+    
