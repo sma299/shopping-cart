@@ -141,6 +141,7 @@ print("--------------------------------")
 print("THANK YOU FOR SHOPPING AT SAMAR'S STUFF!")
 print("HAVE A GREAT DAY")
 
-#file_name = os.path.join(os.path.dirname(__file__), "..", "receipts", f"{now.strftime("%Y-%m-%d %I:%M %p")}.txt"
-#with open(file_name, 'w') as f:
-#    f.write("_______________________")
+#file_name = os.path.join(os.path.dirname(__file__),"..", "receipts", f"{now.strftime("%Y-%M-%d-%H-%m-%S")}.txt")
+file_name = os.path.join(os.path.dirname(__file__),"..", "receipts")
+with open(file_name, 'w') as f:
+    f.write("_______________________")
