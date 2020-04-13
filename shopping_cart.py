@@ -13,7 +13,7 @@ converts a numeric value to usd-formatted string, for printing and display purpo
 """
 
 def to_usd(amount):
-    return "${0:.2f}".format(amount)
+    return "${0:,.2f}".format(amount)
 
 """
 datetime function that returns the date in this format
@@ -137,7 +137,7 @@ receipt += "\nHAVE A GREAT DAY"
 
 print(receipt)
 
-file_name = os.path.join(os.path.dirname(__file__),"..", "receipts", f"{now.strftime("%Y-%M-%d-%H-%m-%S")}.txt")
-# file_name = os.path.join(os.path.dirname(__file__),"..", "receipts", human_friendly_timestamp())
+#file_name = os.path.join(os.path.dirname(__file__),"..", "receipts", f"{now.strftime("%Y-%M-%d-%H-%m-%S")}.txt")
+file_name = os.path.join(os.path.dirname(__file__),"..", "receipts")
 with open(file_name, 'w') as f:
     f.write(receipt)

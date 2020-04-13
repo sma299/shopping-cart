@@ -1,9 +1,6 @@
 import pytest # for pytest.raises (see: https://docs.pytest.org/en/latest/assert.html)
 
-from shopping_cart import TAX_RATE, to_usd, find_product
-
-def test_tax_rate():
-    assert(TAX_RATE) == 0.06
+from shopping_cart import to_usd, find_product, human_friendly_timestamp
 
 def test_to_usd():
     # it should apply USD formatting
@@ -17,6 +14,7 @@ def test_to_usd():
 
     # it should display thousands separators
     assert to_usd(1234567890.5555555) == "$1,234,567,890.56"
+
 
 def test_find_product():
     products = [
@@ -32,3 +30,7 @@ def test_find_product():
     # if there is no match, it should raise an IndexError
     with pytest.raises(IndexError):
         find_product("2222", products)
+
+def test_human_friendly_timestamp():
+    # it should not always be the same time, but should update every second
+    assert human_friendly_timestamp != "2020-04-10 02:36 PM"

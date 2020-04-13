@@ -18,10 +18,7 @@ Example
 ```sh
 conda activate shopping-env
 ```
-Install pytest using pip
-```sh
-pip install pytest
-```
+
 
 ## Usage
 Run the python script
@@ -31,3 +28,14 @@ Example
 python shopping_cart.py
 ```
 
+## Testing
+Install the pytest package within a virtual environment using pip
+
+```sh
+pip install pytest
+```
+
+Run the package using this command
+```sh
+pytest -s
+```
