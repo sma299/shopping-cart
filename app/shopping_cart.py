@@ -34,6 +34,7 @@ def find_product(selected_id, products):
     matching_product = matching_products[0]
     return matching_product
 
+#if __name__ == "__main__":
 
 # keep this here because I do not actually read from the csv file
 products = [
