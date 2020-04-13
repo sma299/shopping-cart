@@ -25,7 +25,7 @@ Run the python script
 
 Example
 ``` sh
-python shopping_cart.py
+python app/shopping_cart.py
 ```
 
 ## Testing
@@ -37,5 +37,5 @@ pip install pytest
 
 Run the package using this command
 ```sh
-pytest -s
+pytest
 ```
