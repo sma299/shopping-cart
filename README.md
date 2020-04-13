@@ -8,7 +8,7 @@ Fork it, clone it, navigate from the command line
 
 Example
 ```sh
-cd ~/Documents/GitHub/shopping-cart
+cd ~/Documents/GitHub/shopping-cart/app
 ```
 
 ## Setup

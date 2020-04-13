@@ -1,6 +1,6 @@
 import pytest # for pytest.raises (see: https://docs.pytest.org/en/latest/assert.html)
 
-from shopping_cart import to_usd, find_product, human_friendly_timestamp
+from app.shopping_cart import to_usd, find_product, human_friendly_timestamp
 
 def test_to_usd():
     # it should apply USD formatting
