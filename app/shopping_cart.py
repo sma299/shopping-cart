@@ -106,13 +106,12 @@ if __name__ == "__main__":
 
 
     # selected items
-    print("SELECTED PRODUCTS:")
+    receipt += ("\nSELECTED PRODUCTS:")
     for selected_id in selected_ids:
-        matching_products = [p for p in products if str(p["id"])  == str(selected_id)]
-        matching_product = matching_products[0]
+        # I use a function here!
+        matching_product = find_product(selected_id, products)
         total_price = total_price + matching_product["price"]
         selected_product_price = to_usd(matching_product["price"])
-
         receipt += "\n" + "... " + matching_product["name"] + " " + "(" + selected_product_price + ")"
 
 
