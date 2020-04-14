@@ -7,29 +7,39 @@ import os # need this to write to a file
 
 # HERE I WILL PUT MY NEW FUNCTIONS because I cannot repeat myself!
 
-"""
-my first docstring comment
-converts a numeric value to usd-formatted string, for printing and display purposes
-"""
 
 def to_usd(amount):
+    """
+    WHAT IT DOES: this function turns a number into US Dollar notation
+
+    PARAMETERS: passes in a number
+
+    RETURNS: a USD-formatted string (ex. $5,350.99)
+    """
     return "${0:,.2f}".format(amount)
 
-"""
-datetime function that returns the date in this format
-ex: 2020-04-10 02:36 PM
-""" 
 
 def human_friendly_timestamp():
+    """
+    WHAT IT DOES: returns the date in a user-friendly format
+
+    PARAMETERS: n/a
+
+    RETURNS: a datetime string (ex. 2020-04-10 02:36 PM)
+    """ 
     today = datetime.datetime.today()
     checkout_at = today.strftime("%Y-%m-%d %I:%M %p")
     return checkout_at
 
-"""
-product lookup function that finds and returns the proper product, even if the products are not sorted in order of their unique identifiers. 
-""" 
 
 def find_product(selected_id, products):
+    """
+    WHAT IT DOES: finds and returns the proper product, even if the products are not sorted in order of their unique identifiers. 
+
+    PARAMETERS: an id string (ex. 1) and a list of dictionaries of products
+
+    RETURNS:
+    """ 
     matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
     matching_product = matching_products[0]
     return matching_product
@@ -106,13 +116,12 @@ if __name__ == "__main__":
 
 
     # selected items
-    print("SELECTED PRODUCTS:")
+    receipt += ("\nSELECTED PRODUCTS:")
     for selected_id in selected_ids:
-        matching_products = [p for p in products if str(p["id"])  == str(selected_id)]
-        matching_product = matching_products[0]
+        # I use a function here!
+        matching_product = find_product(selected_id, products)
         total_price = total_price + matching_product["price"]
         selected_product_price = to_usd(matching_product["price"])
-
         receipt += "\n" + "... " + matching_product["name"] + " " + "(" + selected_product_price + ")"
 
 
@@ -137,7 +146,6 @@ if __name__ == "__main__":
 
     print(receipt)
 
-    #file_name = os.path.join(os.path.dirname(__file__),"..", "receipts", f"{now.strftime("%Y-%M-%d-%H-%m-%S")}.txt")
     file_name = os.path.join(os.path.dirname(__file__),"..", "receipts")
     with open(file_name, 'w') as f:
         f.write(receipt)
